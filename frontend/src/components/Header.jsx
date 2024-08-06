@@ -1,24 +1,47 @@
 import React from "react";
-import { Navbar, Nav, Container, NavbarBrand } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { LinkContainer } from "react-router-bootstrap";
+// import logo from "../assets/invi.jpg";
+// import logo from "../assets/Kasualelegant226.jpg";
 
+/**
+ * Header component that displays a navigation bar at the top of the page.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Header />
+ * )
+ */
 const Header = () => {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
         <Container>
-          <Navbar.Brand href="/">Kasual Tricot</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              <h1>Kasual Tricot</h1>
+              {/* <img src={logo} alt="Kasual Tricot" /> */}
+            </Navbar.Brand>
+          </LinkContainer>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/cart">
-                <FaShoppingCart />
-                Cart
-              </Nav.Link>
-              <Nav.Link href="/login">
-                <FaUser />
-                Sign In
-              </Nav.Link>
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <FaShoppingCart size={34} fontSize={24} />
+                  Cart
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <FaUser size={34} fontSize={24} />
+                  Sign In
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -27,4 +50,5 @@ const Header = () => {
   );
 };
 
+// Exports the Header component as the default export
 export default Header;
