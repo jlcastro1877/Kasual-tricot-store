@@ -19,14 +19,7 @@ const HomePage = () => {
       <Row>
         {/* Map over the products array to create a grid of product names */}
         {products.map((product) => (
-          <Col
-            Key={product._id}
-            sm={12}
-            md={6}
-            lg={4}
-            xl={3}
-            key={product.name}
-          >
+          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>
         ))}
