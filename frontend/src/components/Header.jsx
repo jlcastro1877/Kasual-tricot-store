@@ -2,7 +2,6 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
-import logo from "../assets/svg/logo.svg";
 // import logo from "../assets/Kasualelegant226.jpg";
 
 /**
