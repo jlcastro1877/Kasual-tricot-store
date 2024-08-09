@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
+// Define the review schema
 const reviewSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: "User", // Ensure the 'User' model exists
     },
     name: {
       type: String,
@@ -25,12 +26,13 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
+// Define the product schema
 const productSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: "User", // Ensure the 'User' model exists
     },
     name: {
       type: String,
@@ -52,7 +54,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    reviews: [reviewSchema],
+    reviews: [reviewSchema], // Embeds the review schema
     rating: {
       type: Number,
       required: true,
@@ -73,12 +75,16 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    size: {
+      type: String, // Ensure this matches your data format
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Product = mongoose.model("Product, productSchema");
+// Register the model with Mongoose
+const Product = mongoose.model("Product", productSchema);
 
 export default Product;

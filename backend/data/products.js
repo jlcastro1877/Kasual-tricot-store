@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Classic Crewneck Sweater",
     image: "/images/Colored_jacket.jpeg",
     description:
@@ -14,7 +13,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "2",
     name: "Cozy Cable Knit Cardigan",
     image: "/images/color-summer.jpeg",
     description:
@@ -28,7 +26,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "3",
     name: "Chic Turtleneck Pullover",
     image: "/images/brow-sueter.jpeg",
     description:
@@ -42,7 +39,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "4",
     name: "Trendy Oversized Knit Sweater",
     image: "/images/moleton.jpeg",
     description:
@@ -56,7 +52,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "5",
     name: "Feminine V-Neck Sweater Dress",
     image: "/images/green_dress.jpeg",
     description:
@@ -70,7 +65,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "6",
     name: "Sporty Zip-Up Knit Jacket",
     image: "/images/pink_dress.jpeg",
     description:
@@ -84,7 +78,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "7",
     name: "Elegant Ribbed Knit Jumper",
     image: "/images/natureza-morta.jpg",
     description:
@@ -98,7 +91,6 @@ const products = [
     size: " Sm,medium,Lg,xl",
   },
   {
-    _id: "8",
     name: "Sporty Zip-Up Knit Jacket",
     image: "/images/pilhaRoupas.jpg",
     description:
