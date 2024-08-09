@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
-// import logo from "../assets/invi.jpg";
+import logo from "../assets/svg/logo.svg";
 // import logo from "../assets/Kasualelegant226.jpg";
 
 /**
@@ -21,13 +21,10 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <h1>Kasual Tricot</h1>
               {/* <img src={logo} alt="Kasual Tricot" /> */}
             </Navbar.Brand>
           </LinkContainer>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/cart">

@@ -1,32 +1,26 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import products from "../products";
 import Product from "../components/Product";
+import axios from "axios";
 
-/**
- * `HomePage` is a functional React component that displays a list of products.
- * It uses the `Row` and `Col` components from `react-bootstrap` to layout the products in a responsive grid.
- *
- * The `products` array is imported from the `../products` module and is expected to be an array of product objects.
- * Each product object should have a `name` property.
- *
- * @returns {JSX.Element} A JSX element representing the homepage with a list of products.
- */
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/products");
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <>
-      <h1>Latest Products</h1>
       <Row>
         {/* Map over the products array to create a grid of product names */}
         {products.map((product) => (
-          <Col
-            Key={product._id}
-            sm={12}
-            md={6}
-            lg={4}
-            xl={3}
-            key={product.name}
-          >
+          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>
         ))}
