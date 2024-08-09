@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import axios from "axios";
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -29,4 +30,8 @@ const HomePage = () => {
   );
 };
 
+const client = new ApolloClient({
+  uri: 'https://flyby-router-demo.herokuapp.com/',
+  cache: new InMemoryCache(),
+});
 export default HomePage;
