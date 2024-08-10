@@ -11,11 +11,17 @@ import {
 import Rating from "../components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
 
 const ProductPage = () => {
   const { id: productId } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("Small");
 
@@ -31,6 +37,11 @@ const ProductPage = () => {
 
   const handleSizeChange = (e) => {
     setSize(e.target.value);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, quantity, size }));
+    navigate("/cart");
   };
 
   return (
@@ -134,6 +145,7 @@ const ProductPage = () => {
                     className="btn-block"
                     type="button"
                     disabled={product.countInStock === 0}
+                    onClick={addToCartHandler}
                   >
                     Add to Cart
                   </Button>
