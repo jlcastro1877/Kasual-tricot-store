@@ -40,6 +40,7 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter(
         (x) => !(x._id === _id && x.size === size)
       );
+      updateCart(state);
     },
   },
 });
