@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateCart } from "../utils/cartUtils";
 
+// Initialize the cart state from localStorage or set default values
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : {
@@ -16,33 +17,33 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const item = action.payload;
+      const { _id, size, quantity } = action.payload;
       const existItem = state.cartItems.find(
-        (x) => x._id === item._id && x.size === item.size
+        (x) => x._id === _id && x.size === size
       );
 
       if (existItem) {
         // Update quantity if item already exists
         state.cartItems = state.cartItems.map((x) =>
-          x._id === existItem._id && x.size === item.size
-            ? { ...x, quantity: x.quantity + item.quantity }
-            : x
+          x._id === _id && x.size === size ? { ...x, quantity: quantity } : x
         );
       } else {
         // Add new item to cart
-        state.cartItems = [
-          ...state.cartItems,
-          { ...item, quantity: item.quantity },
-        ];
+        state.cartItems = [...state.cartItems, { ...action.payload, quantity }];
       }
 
-      // Call updateCart to recalculate prices and update state
+      // Recalculate cart prices
       updateCart(state);
     },
-    // Add other reducers if necessary
+    removeFromCart: (state, action) => {
+      const { _id, size } = action.payload;
+      state.cartItems = state.cartItems.filter(
+        (x) => !(x._id === _id && x.size === size)
+      );
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
