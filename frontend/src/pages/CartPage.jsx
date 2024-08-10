@@ -28,6 +28,10 @@ const CartPage = () => {
     dispatch(removeFromCart({ _id: id, size }));
   };
 
+  const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
+
   const goToHomePage = () => {
     navigate("/");
   };
@@ -115,6 +119,7 @@ const CartPage = () => {
                   type="button"
                   className="btn-block"
                   disabled={cartItems.length === 0}
+                  onClick={checkoutHandler}
                 >
                   Checkout
                 </Button>
