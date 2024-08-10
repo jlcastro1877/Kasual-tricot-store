@@ -1,20 +1,13 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Badge, Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
-import logo from "../assets/svg/logo.svg";
-// import logo from "../assets/Kasualelegant226.jpg";
+import { useSelector } from "react-redux";
 
-/**
- * Header component that displays a navigation bar at the top of the page.
- *
- * @component
- * @example
- * return (
- *   <Header />
- * )
- */
 const Header = () => {
+  // Retrieve cartItems from Redux state
+  const { cartItems } = useSelector((state) => state.cart);
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
@@ -31,6 +24,11 @@ const Header = () => {
                 <Nav.Link>
                   <FaShoppingCart size={34} fontSize={24} />
                   Cart
+                  {cartItems.length > 0 && (
+                    <Badge pill bg="success" style={{ marginLeft: "5px" }}>
+                      {cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    </Badge>
+                  )}
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
@@ -47,5 +45,4 @@ const Header = () => {
   );
 };
 
-// Exports the Header component as the default export
 export default Header;
