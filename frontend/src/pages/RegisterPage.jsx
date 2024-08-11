@@ -93,15 +93,15 @@ const RegisterPage = () => {
           className="mt-2"
           disable={isloading}
         >
-          Sign In
+          Sign Up
         </Button>
         {isloading && <Loader />}
       </Form>
       <Row>
         <Col>
-          New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Register
+          Already have account?{" "}
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+            Login
           </Link>
         </Col>
       </Row>
