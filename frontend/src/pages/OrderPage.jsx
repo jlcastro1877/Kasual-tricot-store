@@ -13,12 +13,14 @@ import { toast } from "react-toastify";
 
 const OrderPage = () => {
   const { id: orderId } = useParams();
-
-  const { data: order, isLoading, error } = useGetOrderDetailsQuery(orderId);
-
+  const {
+    data: order,
+    isLoading,
+    error,
+    refetch,
+  } = useGetOrderDetailsQuery(orderId);
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-
   const {
     data: paypal,
     isLoading: loadingPayPal,
@@ -38,9 +40,30 @@ const OrderPage = () => {
     }
   }, [paypal, errorPayPal, loadingPayPal, paypalDispatch]);
 
-  const createOrder = async (data, actions) => {
+  const onApprove = async (data, actions) => {
     try {
-      const order = await actions.order.create({
+      // Capture the order with PayPal
+      const details = await actions.order.capture();
+
+      // Update order payment status in the backend
+      await payOrder({ orderId, details });
+
+      // Re-fetch the order details to update the UI
+      refetch();
+
+      toast.success("Payment successful");
+    } catch (err) {
+      toast.error(err?.data?.message || err.message);
+    }
+  };
+
+  const onError = (err) => {
+    toast.error(err.message);
+  };
+
+  const createOrder = (data, actions) => {
+    return actions.order
+      .create({
         purchase_units: [
           {
             amount: {
@@ -48,28 +71,8 @@ const OrderPage = () => {
             },
           },
         ],
-      });
-      return order;
-    } catch (error) {
-      console.error("Error creating PayPal order:", error);
-      toast.error("Failed to create order.");
-    }
-  };
-
-  const onApprove = async (data, actions) => {
-    try {
-      await actions.order.capture();
-      await payOrder({ orderId }).unwrap();
-      toast.success("Payment successful!");
-    } catch (error) {
-      console.error("Error approving PayPal payment:", error);
-      toast.error("Payment failed.");
-    }
-  };
-
-  const onError = (error) => {
-    console.error("PayPal error:", error);
-    toast.error("An error occurred with PayPal.");
+      })
+      .then((orderId) => orderId);
   };
 
   return isLoading ? (
@@ -112,7 +115,6 @@ const OrderPage = () => {
                 <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
-
             <ListGroup.Item>
               <h2>Order Items</h2>
               {order.orderItems.map((item, index) => (
@@ -126,7 +128,7 @@ const OrderPage = () => {
                     </Col>
                     <Col>{item.size}</Col>
                     <Col>
-                      {item.quantity} x ${item.price} = ${" "}
+                      {item.quantity} x ${item.price} = $
                       {item.quantity * item.price}
                     </Col>
                   </Row>
@@ -159,22 +161,13 @@ const OrderPage = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {isPending ? (
                     <Loader />
                   ) : (
-                    <>
-                      <Button
-                        onClick={() => {
-                          // You can put custom functionality here
-                        }}
-                        style={{ marginBottom: "10px" }}
-                      >
-                        Test Pay Order
-                      </Button>
+                    <div>
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
@@ -182,7 +175,7 @@ const OrderPage = () => {
                           onError={onError}
                         />
                       </div>
-                    </>
+                    </div>
                   )}
                 </ListGroup.Item>
               )}
