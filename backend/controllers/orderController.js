@@ -13,6 +13,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    size,
     quantity,
   } = req.body;
 
@@ -33,6 +34,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
+      size,
       quantity,
     });
 
@@ -56,8 +58,8 @@ const getMyOrders = asyncHandler(async (req, res) => {
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     "user",
-    "name",
-    "email"
+    "name"
+    // "email"
   );
 
   if (order) {
@@ -69,14 +71,30 @@ const getOrderById = asyncHandler(async (req, res) => {
 });
 
 // @desc Update order to pay
-// @route GET /api/orders/:id/pay
+// @route PUT /api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  res.send("updateOrderToPaid ");
+  const order = await Order.findById(req.params.id);
+  if (order) {
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    order.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: req.body.update_time,
+      email_address: req.body.payer.email_address,
+    };
+
+    const updateOrder = await order.save();
+    res.status(200).json(updateOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
 });
 
 // @desc Update order to deliverd
-// @route GET /api/orders/:id/deliver
+// @route PUT /api/orders/:id/deliver
 // @access Private / Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   res.send("updateOrderToDelivered");

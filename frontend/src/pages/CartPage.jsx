@@ -128,7 +128,7 @@ const CartPage = () => {
                   variant="secondary"
                   onClick={goToHomePage}
                 >
-                  Back to Home
+                  Continue Shopping
                 </Button>
               </div>
             </ListGroup.Item>
