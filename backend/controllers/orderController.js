@@ -13,6 +13,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    size,
     quantity,
   } = req.body;
 
@@ -33,6 +34,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
+      size,
       quantity,
     });
 
@@ -56,8 +58,8 @@ const getMyOrders = asyncHandler(async (req, res) => {
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     "user",
-    "name",
-    "email"
+    "name"
+    // "email"
   );
 
   if (order) {
@@ -69,14 +71,14 @@ const getOrderById = asyncHandler(async (req, res) => {
 });
 
 // @desc Update order to pay
-// @route GET /api/orders/:id/pay
+// @route PUT /api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   res.send("updateOrderToPaid ");
 });
 
 // @desc Update order to deliverd
-// @route GET /api/orders/:id/deliver
+// @route PUT /api/orders/:id/deliver
 // @access Private / Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   res.send("updateOrderToDelivered");
