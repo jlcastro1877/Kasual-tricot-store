@@ -43,13 +43,38 @@ table th {
   margin-top: 10px;
 }
 
-.carousel-caption {
+/* .carousel-caption {
   position: absolute;
   width: 100%;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+} */
+
+/* Ensure images are centered within the carousel item */
+.carousel-item img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style for the carousel caption */
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Background for readability */
+  padding: 10px;
+  color: #fff; /* Text color */
+}
+
+.carousel-caption h2 {
+  margin: 0;
 }
 
 .card-img-top {
