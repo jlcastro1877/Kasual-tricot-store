@@ -59,7 +59,7 @@ const ProfilePage = () => {
           <Form.Group controlId="name" className="my-2">
             <Form.Label>Name</Form.Label>
             <Form.Control
-              type="text" // Changed from 'name' to 'text'
+              type="text"
               placeholder="Enter name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -88,7 +88,7 @@ const ProfilePage = () => {
             <Form.Control
               type="password"
               placeholder="Confirm Password"
-              value={confirmPassword} // Corrected value binding
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -122,18 +122,28 @@ const ProfilePage = () => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>
+                    {order.createdAt ? order.createdAt.substring(0, 10) : "N/A"}
+                  </td>
                   <td>${order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
+                      order.paidAt ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        "N/A"
+                      )
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.delivereddAt.substring(0, 10)
+                      order.delivereddAt ? (
+                        order.delivereddAt.substring(0, 10)
+                      ) : (
+                        "N/A"
+                      )
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}
