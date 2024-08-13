@@ -20,6 +20,7 @@ import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 const ProductPage = () => {
   const { id: productId } = useParams();
@@ -82,6 +83,8 @@ const ProductPage = () => {
 
   return (
     <>
+      <Meta title={product?.name} />
+
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
@@ -225,7 +228,7 @@ const ProductPage = () => {
                     <Form.Group controlId="comment" className="my-2">
                       <Form.Control
                         as="textarea"
-                        row="3"
+                        rows="3"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                       ></Form.Control>

@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
+import Meta from "../components/Meta";
 
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 
@@ -31,6 +32,7 @@ const HomePage = () => {
         </Message>
       ) : (
         <>
+          <Meta />
           <Row>
             {/* Map over the products array to create a grid of product names */}
             {data.products.map((product) => (
