@@ -1,6 +1,9 @@
 [build]
-command = "cd frontend && npm ci && npm run build"
-publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+  publish = "frontend/build"
 
 [context.production.environment]
-NODE_ENV = "production"
+  NODE_ENV = "production"
+
+[build.environment]
+  NODE_VERSION = "14.x"
