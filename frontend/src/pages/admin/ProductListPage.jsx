@@ -7,7 +7,8 @@ import {
   useCreateProductMutation,
   useDeleteProductMutation,
 } from "../../slices/productsApiSlice";
-import { toast } from "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify"; // This is correct
+
 import { useParams } from "react-router-dom";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";

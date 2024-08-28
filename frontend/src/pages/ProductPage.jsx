@@ -17,7 +17,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
-import { toast } from "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify"; // This is correct
+
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Meta from "../components/Meta";

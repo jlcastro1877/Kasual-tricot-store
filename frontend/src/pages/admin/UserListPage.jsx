@@ -4,7 +4,8 @@ import { Table, Button } from "react-bootstrap";
 import { FaTimes, FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { toast } from "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify"; // This is correct
+
 import {
   useGetUsersQuery,
   useDeleteUSerMutation,

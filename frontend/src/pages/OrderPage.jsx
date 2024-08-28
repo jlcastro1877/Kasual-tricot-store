@@ -4,7 +4,8 @@ import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { toast } from "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify"; // This is correct
+
 import {
   useGetOrderDetailsQuery,
   usePayOrderMutation,
