@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify/dist/ReactToastify.css";
 import CheckoutProcess from "../components/CheckoutProcess";
 import Message from "../components/Message";
 import Loader from "../components/Loader";

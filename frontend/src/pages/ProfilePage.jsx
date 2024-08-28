@@ -4,7 +4,7 @@ import Loader from "../components/Loader";
 import { Row, Col, Form, Button, Table } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify/dist/ReactToastify.css";
 import { useProfileMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { useGetMyOrdersQuery } from "../slices/orderApiSlice";

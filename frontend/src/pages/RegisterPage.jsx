@@ -6,7 +6,7 @@ import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import { useRegisterMutation } from "../slices/usersApiSlice.js";
 import { setCredentials } from "../slices/authSlice.js";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify/dist/ReactToastify.css";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
