@@ -1,3 +1,6 @@
 [build]
-  command = "cd frontend && npm ci && npm run build"
-  publish = "/opt/build/repo/frontend/build"
+  command = "cd frontend && npm run build"
+  publish = "frontend/build"
+
+[build.environment]
+  NODE_VERSION = "14.x"
