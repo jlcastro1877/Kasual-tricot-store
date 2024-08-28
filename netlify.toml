@@ -1,8 +1,3 @@
 [build]
   command = "cd frontend && npm ci && npm run build"
-  publish = "frontend/build"
-
-[context.production.environment]
-  NODE_ENV = "production"
-
-
+  publish = "/opt/build/repo/frontend/build"
