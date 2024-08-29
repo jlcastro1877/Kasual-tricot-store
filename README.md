@@ -80,7 +80,7 @@
 
 ### \* Mongoose: ODM library for MongoDB, simplifying data modeling and management.
 
-### \* Hosting and Deployment: [List platforms used, e.g., AWS, Netlify]
+### \* Hosting and Deployment: Render
 
 ### Outcome:
 
